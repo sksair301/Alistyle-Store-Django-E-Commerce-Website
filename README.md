@@ -52,4 +52,3 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-<img width="1024" height="1024" alt="favicons" src="https://github.com/user-attachments/assets/9abb2bc6-0198-4be1-95f9-9213127bc7cd" />
