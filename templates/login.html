@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Alistyle - Login</title>
+
+    <link href="{% static 'images/favicons.png' %}" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Bootstrap + jQuery -->
+    <script src="{% static 'js/jquery-2.0.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'fonts/fontawesome/css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/ui.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+    <style>
+      body {
+        background-color: #f9f9f9;
+        font-family: "Poppins", sans-serif;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 15px;
+      }
+      .btn-primary {
+        background-color: #ffaa00ff;
+        border: none;
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        background-color: #f06b06ff;
+      }
+      .alert {
+        font-size: 0.9rem;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="section-header">
+      <nav class="navbar navbar-expand-sm navbar-light border-bottom">
+        <div class="container">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+              <div class="dropdown">
+                <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categories
+                </li>
+                <div class="dropdown-menu">
+                  {% for cat in category %}
+                    <a class="dropdown-item" href="{{ cat.get_url }}">{{ cat.category_name }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container py-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'images/logo.svg' %}" alt="Alistyle Logo" style="height: 45px;" />
+          </a>
+          <div class="col-lg-7 col-md-6 col-12">
+            <form action="{% url 'search' %}" method="GET" class="form-inline w-100">
+              <input type="text" name="keyword" class="form-control flex-grow-1" placeholder="Search for products..." />
+              <button class="btn btn-primary ml-2" type="submit">Search</button>
+            </form>
+          </div>
+            <button class="btn btn-outline-primary mr-2" onclick="window.location='{% url 'store' %}'">
+              <i class="fa fa-store"></i> Visit Store
+            </button>
+            <button class="btn btn-outline-primary" onclick="window.location='{% url 'store' %}'">
+              <i class="fa fa-comments"></i> Chat Support
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- LOGIN SECTION -->
+    <section class="section-content padding-y" style="min-height:84vh">
+      <div class="card mx-auto" style="max-width: 400px; margin-top:100px;">
+        <div class="card-body">
+          <h4 class="card-title mb-4 text-center">Login to Your Account</h4>
+
+          <!-- Django messages -->
+          {% if messages %}
+            {% for message in messages %}
+              {% if message.tags != 'success' %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+
+          <form method="POST" action="{% url 'login_view' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <input name="username" class="form-control" placeholder="Username" required />
+            </div>
+            <div class="form-group">
+              <input name="password" class="form-control" placeholder="Password" type="password" required />
+            </div>
+            <div class="form-group d-flex justify-content-between">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked />
+                <div class="custom-control-label">Remember me</div>
+              </label>
+              <a href="#" class="text-primary">Forgot password?</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <p class="text-center mt-4">
+        Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section-footer text-dark mt-5">
+      <div class="container text-center">
+        <p class="text-muted mb-0">&copy; 2025 Alistyle. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
