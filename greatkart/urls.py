@@ -33,5 +33,4 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 else:
-    # WhiteNoise fallback for Render
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
