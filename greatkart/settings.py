@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-fm_m=#(%2*jfzc$c(k1v2c#m953@)@ae&l(br^)do(%03hn_o1
 # -------------------------------------------------------------
 # SECURITY WARNING: don't run with debug turned on in production!
 # -------------------------------------------------------------
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'alistyle-store-django-e-commerce-website.onrender.com',
@@ -112,9 +112,9 @@ STATICFILES_DIRS = [
 # WhiteNoise settings (for production)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files
+# ✅ Media files (images, uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'greatkart' / 'media'
 
 # -------------------------------------------------------------
 # Default primary key field type
