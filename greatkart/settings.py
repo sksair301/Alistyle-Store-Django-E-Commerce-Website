@@ -23,9 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fm_m=#(%2*jfzc$c(k1v2c#m953@)@ae&l(br^)do(%03hn_o1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False  # (optional) Set to False for production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'alistyle-store-django-e-commerce-website.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
+
 
 
 # Application definition
